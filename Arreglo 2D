@@ -1,0 +1,38 @@
+int ** crea_arreglo2D(int nr, int c);
+
+
+int main(){
+}
+
+
+int ** crea_arreglo2D(int nr, int c){
+
+    int **ptr2D;
+    ptr2D= (int **)malloc(sizeof(int *)*nr);//Arreglo de punteros
+    if(!ptr2D){
+        printf("Error");
+    }
+    
+    for(int i=0; i<nr; i++){
+    
+        *(ptr2D+r) = (int *) malloc(sizeof(int)*c);
+        if(!*(ptr2D+i)){
+
+            printf("Error no se pudo asignar el espacio de memoria");
+
+            while(i>=0){
+
+                i--;
+                free(*(ptr2D+r));
+            
+            }
+
+            free(ptr2D);
+            ptr2D=NULL;
+            break;
+        
+        }
+    
+    }
+
+}
