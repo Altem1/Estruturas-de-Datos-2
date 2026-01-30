@@ -16,7 +16,7 @@ int main(){
     captura(arreglo, n);
     prom=promedio(arreglo, n);
     imprime(arreglo, n , prom);
-
+    libera_arreglo1D(&arreglo);
 }
 
 int *crea_arreglo(int n){
@@ -65,4 +65,9 @@ void imprime(int *a, int n, float prom){
     }
 
     printf("Promedio: %f", prom);
+}
+
+void libera_arreglo1D(int **ar1d){
+    free(*ar1d);
+    *ar1d=NULL;
 }
