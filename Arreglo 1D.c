@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 
 int *crea_arreglo(int n);
 void captura(int *a, int n);
@@ -12,6 +13,7 @@ int main(){
     printf("Tam del arreglo: ");
     scanf("%d", &n);
     arreglo=crea_arreglo(n);
+    captura(arreglo, n);
     prom=promedio(arreglo, n);
     imprime(arreglo, n , prom);
 
@@ -31,11 +33,9 @@ int *crea_arreglo(int n){
 void captura(int *a, int n){
 
     for (int i = 0; i < n; i++){
-        printf("Elemento %d:", i);
-        scamf("%d", a+1);
+        printf("Elemento [%d]: ", i+1);
+        scanf("%d", (a+i));
     }
-    
-
 }
 
 float promedio(int *a, int n){
@@ -59,7 +59,7 @@ void imprime(int *a, int n, float prom){
 
     while(p<a+n){
     
-        printf("Elemento %d: %d\n", i++, *p);
+        printf("Elemento [%d]: %d\n", i++, *p);
         p++;
 
     }
