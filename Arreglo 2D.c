@@ -77,3 +77,20 @@ void imprime_arreglo(int **a, int nr, int nc){
         }
     }
 }
+
+void libera_arreglo1D(int **ar1d){
+    free(*ar1d);
+    *ar1d=NULL;
+}
+
+void liberar_arreglo2D(int ***ar2d, int nr){
+    
+    for(int i=0; i<nr; i++){
+        
+        libera_arreglo1D( *ar2d + i );
+    }
+    
+    free(*ar2d);
+    *ar2d=NULL;
+    
+}
