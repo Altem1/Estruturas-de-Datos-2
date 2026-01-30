@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 
 void crea_arreglo2D(int ***ptr2D, int nr, int c);
 void capturar_arreglo(int **a, int nr, int nc);
@@ -23,7 +24,7 @@ int main(){
 void crea_arreglo2D(int ***ptr2D, int nr, int c){
 
     
-    ptr2D= (int **)malloc(sizeof(int *)*nr);//Arreglo de punteros
+    *ptr2D= (int **)malloc(sizeof(int *)*nr);//Arreglo de punteros
     if(!ptr2D){
         printf("Error");
     }
