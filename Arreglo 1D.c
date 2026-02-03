@@ -5,6 +5,7 @@ int *crea_arreglo(int n);
 void captura(int *a, int n);
 float promedio(int *a, int n);
 void imprime(int *a, int n, float prom);
+void libera_arreglo1D(int **ar1d);
 
 int main(){
 
