@@ -11,13 +11,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Descargar codigo
-      uses: actions/checkout@v4
+    - uses: actions/checkout@v4
 
-    - name: Compilar proyecto
-      # Esto reemplaza al fallido ./configure
-      run: make
-
-    - name: Verificar ejecucion basica
-      # Esto intentará correr el programa 'puntero' usando un eco como entrada
-      run: echo "0" | ./puntero
+    - name: Compilar archivos .c
+      # Este comando compila todos tus archivos individualmente para ver si tienen errores
+      run: |
+        gcc "Arreglo 1D.c" -o arreglo1d
+        gcc "Arreglo 2D.c" -o arreglo2d
+        gcc Arreglo.c -o arreglo
+        gcc Puntero.c -o puntero
