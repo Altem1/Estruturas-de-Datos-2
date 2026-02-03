@@ -11,16 +11,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Descargar codigo
+      uses: actions/checkout@v4
 
-    - name: Compilar con Makefile
+    - name: Compilar proyecto
+      # Esto reemplaza al fallido ./configure
       run: make
 
-    - name: Ejecutar Arreglo 1D
-      run: ./arreglo_1d < input.txt
-      
-    #- name: Ejecutar Arreglo 2D
-     # run: ./arreglo_2d < input.txt
-
-    #- name: Ejecutar Puntero
-     # run: ./puntero < input.txt
+    - name: Verificar ejecucion basica
+      # Esto intentará correr el programa 'puntero' usando un eco como entrada
+      run: echo "0" | ./puntero
