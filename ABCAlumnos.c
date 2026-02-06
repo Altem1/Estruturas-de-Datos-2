@@ -1,5 +1,3 @@
-//Programa para altas y bajas de alumnos, modificaciones, busqueda.
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -42,9 +40,31 @@ void altas(TAlumno *arr, int na){
 
 }
 
+//necesito buscar al alumno
+TAlumno *busqueda(TAlumno *arr, int clave, int na){
+
+    TAlumno *encontrado=NULL;
+
+    for(int i=0; i<na; i++){
+
+        if ((*(arr+i)).clave==clave){
+            encontrado=arr+i;
+            break;
+        }
+        
+    }
+    return encontrado;
+}
+
 void bajas(TAlumno *arr, int *na, int clave1){
 
-    
+    TAlumno *buscar=NULL;
+    buscar=busqueda(arr, clave1, *na);
+    if(buscar){
+        //Se encontro el alumno
+        *buscar = *(arr + (*na - 1));
+        (*na)--1;
+    }
 
 }
 
