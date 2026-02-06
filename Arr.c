@@ -45,5 +45,5 @@ void captura_alumnoS(TAlumno *ptrA, int na){
 }
 
 void imprime(TAlumno *ptrA, int na){
-    
+	//Aqui va la impresion de los datos
 }
