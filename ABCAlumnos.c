@@ -40,6 +40,11 @@ void altas(TAlumno *arr, int na){
 
 }
 
+void consulta(){
+
+
+}
+
 //necesito buscar al alumno
 TAlumno *busqueda(TAlumno *arr, int clave, int na){
 
@@ -87,5 +92,9 @@ void captura_alumnoS(TAlumno *ptrA){
 
         printf("Generacion: ");
         scanf("%d", &(ptrA+i)->generacion);
+
+}
+
+void imprimir(TAlumnos *arr, int *na){
 
 }
