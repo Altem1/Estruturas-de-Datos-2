@@ -31,12 +31,12 @@ void captura_alumnoS(TAlumno *ptrA, int na){
         printf("Nombre: ");
         scanf("%[^\n], cadena");
         (ptrA+i)->nombre=(char*)malloc(sizeof(char)*(strlen(cadena)+1));
-        strcp((ptrA+i)->nombre, cadena);
+        strcmp((ptrA+i)->nombre, cadena);
 
         printf("Carrera: ");
         scanf("%[^\n], cadena");
         (ptrA+i)->carrera=(char*)malloc(sizeof(char)*strlen(cadena+1));
-        strcp((ptrA+i)->carrera, cadena);
+        strcmp((ptrA+i)->carrera, cadena);
 
         printf("Generacion: ");
         scanf("%d", &(ptrA+i)->generacion);
@@ -45,5 +45,5 @@ void captura_alumnoS(TAlumno *ptrA, int na){
 }
 
 void imprime(TAlumno *ptrA, int na){
-	//Aqui va la impresion de los datos
+    
 }
