@@ -88,7 +88,7 @@ void liberar_arreglo2D(int ***ar2d, int nr){
     for(int i=0; i<nr; i++){
         
         //libera_arreglo1D( *ar2d + i );
-        libera_arreglo1D(*( *ar2d + i ));
+        libera_arreglo1D(( *ar2d + i ));
     }
     
     free(*ar2d);

@@ -47,3 +47,8 @@ void captura_alumnoS(TAlumno *ptrA, int na){
 void imprime(TAlumno *ptrA, int na){
     
 }
+
+int main(){
+
+    return 0;
+}
