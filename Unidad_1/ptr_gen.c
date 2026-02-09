@@ -53,13 +53,13 @@ void *crea_dato_generico(int tipo){
             break;
 
         case CHAR:
-            ptr=malloc(sizeof(int));
+            ptr=malloc(sizeof(char));
             break;
         
         case STRING:
             printf("Ingresa el tamaño de la cadena: ");
             scanf("%d", &tam);
-            ptr=malloc(sizeof(int));
+            ptr=malloc(sizeof(char)*tam);
             break;
 
         case STRUCT:
@@ -208,11 +208,13 @@ void captura_datos_genericos(void *pds, int tipo, int n){
             desp=sizeof(float);
             break;
         case CHAR:
-            desp=sizeof(char);
+            desp=sizeof(char)*n;
             break;
         case STRING:
             desp=sizeof(char)*n;
             break;
+        case STRUCT: 
+            desp=sizeof(TProducto)*n;
     
     default:
         break;
