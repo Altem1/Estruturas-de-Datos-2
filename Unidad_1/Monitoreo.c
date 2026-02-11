@@ -54,3 +54,15 @@ int *crea_equipo(int n){
     }
 
 }
+
+int cuenta_humedad(Equipo *ptr, int n){
+
+    for(int i=0; i<n, i++){
+
+        if((ptr+i)->tipo=='H'){
+            (((((humedad)(ptr+i)->dato))->humedad)>70);
+        }
+
+    }
+
+}
