@@ -112,32 +112,89 @@ void elimina_inicio(TNodo **c){
     }
 }
 
-void elimina_final(TNodo **c){
+tipo elimina_final(TNodo **c){
 
-    TNodo *anterior, *corre;
+    TNodo *anterior, *corre; 
+    tipo aux=-1;
 
-    if(!*c){
-        printf("Error: El nodo esta vacio");
-        return;
-    }else{
+    if( *c ){
         corre = *c;
         while( corre -> sig != NULL){
             anterior = corre;
             corre = corre -> sig;
         }
 
+        aux = anterior -> info;
         anterior -> sig = NULL;
-
     }
+
+    free(corre);
+    return aux;
 
 }
 
-void elimina_finalR(TNodo **c){
+tipo elimina_finalR(TNodo **c){
 
-    if( (*c) -> sig == NULL){
+    tipo aux=-1;
+
+    if( (*c) -> sig == NULL ){
         *c = NULL;
     }else{
-        elimina_finalR(&(( *c ) -> sig));
+        aux = elimina_finalR(&(( *c ) -> sig));
     }
 
+    return aux;
+
+}
+
+int elimina_x(TNodo **cab, tipo x){
+
+    TNodo *corre, *anterior;
+    int band = 0;
+
+    if( *cab ){
+
+        if( (*cab) -> info == x ){
+            corre = *cab;
+            *cab = corre -> sig;
+            free(corre);
+            band = 1;
+        } else {
+
+            corre = *cab;
+            while ( corre != NULL && corre -> info != x){
+                
+                anterior = corre;
+                corre = corre ->sig;
+            }
+
+            if( corre ){
+
+                anterior -> sig = corre -> sig;
+                free(corre);
+
+            }
+        }
+    }
+    return band;
+}
+
+int elimina_xR(TNodo **cab, tipo x){
+
+    TNodo *corre, *anterior;
+    int band = 0;
+
+    if( *cab ){
+
+        if( (*cab) -> info == x ){
+            corre = *cab;
+            *cab = corre -> sig;
+            free(corre);
+            band = 1;
+        } else{
+            band = elimina_xR(&(*cab)->sig, x);
+        }
+    }
+
+    return band;
 }

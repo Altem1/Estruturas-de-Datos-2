@@ -16,8 +16,10 @@ void inserta_finalR(TNodo **c, tipo d);
 void inserta_ordenado(TNodo **C, tipo d);
 void inserta_ordenadoR(TNodo **C, tipo d);
 void elimina_inicio(TNodo **c);
-void elimina_final(TNodo **c);
-void elimina_finalR(TNodo **c);
+tipo elimina_final(TNodo **c);
+tipo elimina_finalR(TNodo **c);
+int elimina_x(TNodo **cab, tipo x);   
+int elimina_xR(TNodo **cab, tipo x);
 int menu();
 
 #endif
