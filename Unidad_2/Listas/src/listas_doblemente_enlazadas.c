@@ -1,4 +1,4 @@
-#include "funciones.h"
+#include "../include/listas_doblemente_enlazadas.h"
 
 TNodoD *crea_nodo(tipo d){
 
@@ -19,18 +19,44 @@ void inicializa(TCabs *cabs){
 
 }
 
-void inserta_final(){
+void inserta_inicio(TCabs *cabs, tipo d) {
+    TNodoD *nuevo = crea_nodo(d);
 
+    if (nuevo != NULL) {
+        // Caso 1: La lista está vacía
+        if (cabs->ini == NULL) {
+            cabs->ini = cabs->fin = nuevo;
+        } 
+        // Caso 2: Ya hay elementos
+        else {
+            nuevo->sig = cabs->ini;
+            cabs->ini->ant = nuevo;
+            cabs->ini = nuevo;
+        }
+    }
 }
 
-void inserta_inicio(){
+void inserta_final(TCabs *cabs, tipo d) {
+    TNodoD *nuevo = crea_nodo(d);
 
+    if (nuevo != NULL) {
+        // Caso 1: La lista está vacía
+        if (cabs->fin == NULL) {
+            cabs->ini = cabs->fin = nuevo;
+        } 
+        // Caso 2: Ya hay elementos
+        else {
+            nuevo->ant = cabs->fin;
+            cabs->fin->sig = nuevo;
+            cabs->fin = nuevo;
+        }
+    }
 }
 
 void inserta_ordenada(TCabs *cabs, tipo d){
 
     TNodoD *corre, *aux;
-    aux = crea_nodo;
+    aux = crea_nodo(d);
 
     if( aux ){
 

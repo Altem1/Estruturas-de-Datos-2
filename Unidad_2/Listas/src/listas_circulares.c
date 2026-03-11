@@ -93,8 +93,32 @@ void elimina_inicio_final_cir(TNodo **cab, int band){
     }
 }
 
-void elimina_x_cir(TNodo, tipo d){
+void elimina_x_cir(TNodo **cab, tipo d){
 
-    
+     TNodo *ant, *corre;
+
+    if (*cab != NULL) {
+        if ((*cab) -> sig == *cab) { // Lista con un solo nodo
+            if ((*cab) -> info == d) {
+                free(*cab);
+                *cab = NULL;
+            } else {
+                printf("no esta en la lista");
+            }
+        } else { // Lista con más de un nodo
+            corre = *cab;
+            while (corre->sig != *cab && corre -> info != d) {
+                ant = corre;
+                corre = corre->sig;
+            }
+
+            if (corre -> sig == *cab && corre -> info != d) {
+                printf("\n dato no esta en la lista");
+            } else {
+                ant->sig = corre -> sig;
+                free(corre);
+            }
+        }
+    }
 
 }

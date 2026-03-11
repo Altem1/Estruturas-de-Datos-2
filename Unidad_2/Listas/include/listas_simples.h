@@ -1,5 +1,8 @@
-#ifndef ALGORITMOS_H
-#define ALGORITMOS_H
+#ifndef LISTAS_SIMPLES_H
+#define LISTAS_SIMPLES_H
+
+#include <stdio.h>
+#include <stdlib.h>
 
 typedef int tipo;
 
@@ -21,6 +24,5 @@ tipo elimina_final(TNodo **c);
 tipo elimina_finalR(TNodo **c);
 int elimina_x(TNodo **cab, tipo x);   
 int elimina_xR(TNodo **cab, tipo x);
-int menu();
 
 #endif
