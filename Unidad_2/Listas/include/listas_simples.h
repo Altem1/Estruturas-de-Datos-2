@@ -8,6 +8,7 @@ typedef struct nodo{
 	struct nodo *sig;
 }TNodo;
 
+//Listas Simples
 TNodo *crea_nodo(tipo d);
 void imprime_lista(TNodo *cab);
 void inserta_inicio(TNodo **cab, tipo d);

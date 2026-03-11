@@ -2,16 +2,7 @@
 #include <stdlib.h>
 #include "algoritmos.h"
 
-int menu(){
-    int opcion;
-
-    printf("Ingresa la opcion: ");
-    printf("\n1.- Crear nodo \n2- Impirmir lista\n3- Inserta inicio \n4.- Inserta final \n5.- Inserta ordenado\n6.- Elimina inicio \n7.- Eliminar final \n8.- Salir ");
-    printf("\n\tElige: ");
-    scanf("%d", &opcion);
-
-    return opcion;
-}
+//Listas Simples
 
 TNodo *crea_nodo(tipo d){
 	TNodo *aux;

@@ -11,7 +11,9 @@ typedef struct nodo{
 	struct nodo *sig;
 }TNodo;
 
-TNodo *crea_nodo(tipo d);
 void imprime_lista_cir(TNodo *cab);
+void inserta_inicio_cir_ini_fin(TNodo **cab, tipo d, int band);
+void inserta_ord_cir(TNodo **cab, tipo d);
+void elimina_inicio_final_cir(TNodo **cab, int band);
 
 #endif

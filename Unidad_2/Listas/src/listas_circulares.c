@@ -1,14 +1,5 @@
-#include "./algoritmos.h"
-
-TNodo *crea_nodo(tipo d){
-	TNodo *aux;
-	aux = (TNodo *) malloc (sizeof(TNodo));
-	if(aux != NULL){
-		aux->info = d;
-		aux->sig = NULL;
-	}
-	return aux;
-}
+#include "../include/listas_circulares.h"
+#include "../include/listas_simples.h"
 
 void imprime_lista_cir(TNodo *cab){
 
@@ -68,5 +59,42 @@ void inserta_ord_cir(TNodo **cab, tipo d){
             corre -> sig = aux;
         }
     }
+}
+
+void elimina_inicio_final_cir(TNodo **cab, int band){
+
+    TNodo *aux, *corre, *anterior;
+
+    if(!*cab){
+        aux = *cab;
+
+        if ( aux -> sig == *cab ) {
+            *cab = NULL;
+            free(aux);
+        }else{
+            
+            corre = *cab;
+            while (corre -> sig != cab) {
+                anterior = corre;
+                corre = corre -> sig;
+            }
+
+            if(band = 0){ //con 1 indicamos que eliminara al inicio
+                *cab = (*cab) -> sig;
+                corre -> sig = *cab;
+                anterior = NULL;
+                free(anterior);
+            }else{ //cualquier otro numero eliminamos al final
+                anterior -> sig = *cab;
+                corre = NULL;
+                free(corre);
+            }
+        }
+    }
+}
+
+void elimina_x_cir(TNodo, tipo d){
+
+    
 
 }
