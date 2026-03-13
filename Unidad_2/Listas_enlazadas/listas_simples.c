@@ -1,12 +1,13 @@
-#include "../include/listas_simples.h"
+#include "listas_simples.h"
 
 //Listas Simples
 
-TNodo *crea_nodo(tipo d){
+TNodo *crea_nodo(tipo coefi, tipo expo){
 	TNodo *aux;
 	aux = (TNodo *) malloc (sizeof(TNodo));
 	if(aux != NULL){
-		aux->info = d;
+        aux -> coef = coefi;
+		aux-> exp = expo;
 		aux->sig = NULL;
 	}
 	return aux;
@@ -16,16 +17,20 @@ void imprime_lista(TNodo *cab){
 	//Se puede usar una variable aux =  cab
 	printf("Cab ->");
 	while(cab != NULL){
-		printf("%d -> ", cab->info);
+		printf(" %dx^%d + ", cab -> coef, cab -> exp);
+        if (cab -> exp == 0){
+            printf("\b\b");
+        }
+        
 		cab=cab->sig;
 	}
 	printf("NULL");
 }
 
-void inserta_inicio(TNodo **c, tipo d){
+void inserta_inicio(TNodo **c, tipo coefi, tipo expo){
     
     TNodo *aux;
-    aux = crea_nodo(d);
+    aux = crea_nodo(coefi, expo);
 
     if(aux){
         
@@ -36,57 +41,59 @@ void inserta_inicio(TNodo **c, tipo d){
     
 }
 
-void inserta_final(TNodo **c, tipo d){
+void inserta_final(TNodo **c, tipo coefi, tipo expo){
     
     TNodo *corre;
     
     if(*c == NULL){
-        *c = crea_nodo(d);
+        *c = crea_nodo(coefi, expo);
     }else{
         
         corre = *c;
 
-        while( corre->sig != NULL ){
+        while( corre -> sig != NULL ){
             corre = corre -> sig;
         }
-        corre -> sig = crea_nodo(d);
+        corre -> sig = crea_nodo(coefi, expo);
     }
 }
 
-void inserta_finalR(TNodo **c, tipo d){
+void inserta_finalR(TNodo **c, tipo coefi, tipo expo){
     
     if ( *c == NULL ){
-        *c = crea_nodo(d);
+        *c = crea_nodo(coefi, expo);
     }else{
-        inserta_finalR(&((*c)->sig), d);
+        inserta_finalR(&((*c)->sig), coefi, expo);
     }
 
 }
 
-void inserta_ordenado(TNodo **c, tipo d){
+void inserta_ordenado(TNodo **c, tipo coefi, tipo expo){
 
     TNodo *corre;
     TNodo *anterior;
 
-    if(*c==NULL || d < (*c) -> info) {
-        inserta_inicio(c, d);
+    if(*c==NULL || expo < (*c) -> exp) {
+        inserta_inicio(c, coefi, expo);
     }else{
         corre=*c;
-        while(corre != NULL && d > corre -> info ){
+        while(corre != NULL && expo > corre -> exp ){
             anterior = corre;
             corre = corre -> sig;
         }
-        anterior -> sig = crea_nodo(d);
+        anterior -> sig = crea_nodo(coefi, expo);
         anterior -> sig -> sig = corre;
     }
 
 }
 
-void inserta_ordenadoR(TNodo **c, tipo d){
-    if( *c == NULL || d < (*c) -> info) {
-        inserta_inicio(c, d);
+void inserta_ordenadoR(TNodo **c, tipo coefi, tipo expo){
+    if( *c == NULL || expo > (*c) -> exp) {
+        inserta_inicio(c, coefi, expo);
+    }else if(expo == (*c) -> exp){
+        (*c) -> coef += coefi;
     }else{
-        inserta_ordenadoR(&((*c)->sig), d);
+        inserta_ordenadoR(&((*c)->sig), coefi, expo);
     }
 }
 
@@ -101,7 +108,7 @@ void elimina_inicio(TNodo **c){
     }
 }
 
-tipo elimina_final(TNodo **c){
+void elimina_final(TNodo **c){
 
     TNodo *anterior, *corre; 
     tipo aux=-1;
@@ -112,38 +119,32 @@ tipo elimina_final(TNodo **c){
             anterior = corre;
             corre = corre -> sig;
         }
-
-        aux = anterior -> info;
         anterior -> sig = NULL;
     }
 
     free(corre);
-    return aux;
 
 }
 
-tipo elimina_finalR(TNodo **c){
+void elimina_finalR(TNodo **c){
 
     tipo aux=-1;
 
     if( (*c) -> sig == NULL ){
         *c = NULL;
     }else{
-        aux = elimina_finalR(&(( *c ) -> sig));
+        elimina_finalR(&(( *c ) -> sig));
     }
-
-    return aux;
-
 }
 
-int elimina_x(TNodo **cab, tipo x){
+int elimina_x(TNodo **cab, tipo coefi, tipo expo){
 
     TNodo *corre, *anterior;
     int band = 0;
 
     if( *cab ){
 
-        if( (*cab) -> info == x ){
+        if( (*cab) -> coef == coefi && (*cab) -> exp == expo ){
             corre = *cab;
             *cab = corre -> sig;
             free(corre);
@@ -151,7 +152,7 @@ int elimina_x(TNodo **cab, tipo x){
         } else {
 
             corre = *cab;
-            while ( corre != NULL && corre -> info != x){
+            while ( corre != NULL && corre -> coef != coefi && corre -> exp != expo){
                 
                 anterior = corre;
                 corre = corre ->sig;
@@ -168,20 +169,20 @@ int elimina_x(TNodo **cab, tipo x){
     return band;
 }
 
-int elimina_xR(TNodo **cab, tipo x){
+int elimina_xR(TNodo **cab, tipo coefi, tipo expo){
 
     TNodo *corre, *anterior;
     int band = 0;
 
     if( *cab ){
 
-        if( (*cab) -> info == x ){
+        if( (*cab) -> coef == coefi && (*cab) -> exp == expo ){
             corre = *cab;
             *cab = corre -> sig;
             free(corre);
             band = 1;
         } else{
-            band = elimina_xR(&(*cab)->sig, x);
+            band = elimina_xR(&(*cab)->sig, coefi, expo);
         }
     }
 
