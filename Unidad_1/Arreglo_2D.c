@@ -22,7 +22,6 @@ int main(){
 
 
 void crea_arreglo2D(int ***ptr2D, int nr, int c){
-
     
     *ptr2D= (int **)malloc(sizeof(int *)*nr);//Arreglo de punteros
     if(!ptr2D){
@@ -46,11 +45,8 @@ void crea_arreglo2D(int ***ptr2D, int nr, int c){
             free(*ptr2D);
             *ptr2D=NULL;
             break;
-        
         }
-    
     }
-
 }
 
 void capturar_arreglo(int **a, int nr, int nc){
