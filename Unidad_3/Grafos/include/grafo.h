@@ -20,5 +20,8 @@ int calcular_n_vertices(char *nom_arch);
 void imprime_grafoMR(TGrafoMR g);
 void agrega_vertice(TGrafoMR *g, int v);
 void agrega_relacion(TGrafoMR *g, int o, int d, int tip);
+void busqueda_prof(TGrafoMR g, int vo);
+void bprof(TGrafoMR g, int v, int *vis);
+void amplitud_dep(TGrafoMR g, int v);
 
 #endif

@@ -1,6 +1,23 @@
 #include "../include/grafoLL.h"
 #include "../include/grafo.h"
 
+static int contar_vertices(TNodoV *g){
+    int total = 0;
+    for(TNodoV *aux = g; aux != NULL; aux = aux->siguiente){
+        total++;
+    }
+    return total;
+}
+
+static int indice_de_nodo(TNodoV **vertices, int n, TNodoV *nodo){
+    for(int i = 0; i < n; i++){
+        if(*(vertices + i) == nodo){
+            return i;
+        }
+    }
+    return -1;
+}
+
 TNodoV *crea_grafoLL(TGrafoMR g){
 
     return convierte_mr_a_ll(g);
@@ -113,5 +130,66 @@ void imprime_grafoLL(TNodoV *g){
         }
     }
 
+}
+
+void busqueda_amplitud_LL(TNodoV *g, int vo){
+    if(!g){
+        return;
+    }
+
+    int n = contar_vertices(g);
+    if(n <= 0){
+        return;
+    }
+
+    TNodoV **vertices = (TNodoV**)malloc(sizeof(TNodoV*) * n);
+    int *visitados = (int*)calloc(n, sizeof(int));
+    int *cola = (int*)malloc(sizeof(int) * n);
+
+    if(!vertices || !visitados || !cola){
+        free(vertices);
+        free(visitados);
+        free(cola);
+        return;
+    }
+
+    int inicio = -1;
+    TNodoV *aux = g;
+    for(int i = 0; i < n && aux != NULL; i++, aux = aux->siguiente){
+        *(vertices + i) = aux;
+        if(aux->vertice == vo){
+            inicio = i;
+        }
+    }
+
+    if(inicio == -1){
+        free(vertices);
+        free(visitados);
+        free(cola);
+        return;
+    }
+
+    int frente = 0;
+    int fin = 0;
+    *(visitados + inicio) = 1;
+    *(cola + fin++) = inicio;
+
+    while(frente < fin){
+        int actual = *(cola + frente++);
+        TNodoV *origen = *(vertices + actual);
+        printf("%d -> ", origen->vertice);
+
+        for(TNodoA *arista = origen->abajo; arista != NULL; arista = arista->siguiente){
+            int idx = indice_de_nodo(vertices, n, arista->arriba);
+            if(idx != -1 && *(visitados + idx) == 0){
+                *(visitados + idx) = 1;
+                *(cola + fin++) = idx;
+            }
+        }
+    }
+
+    free(vertices);
+    free(visitados);
+    free(cola);
 }
 

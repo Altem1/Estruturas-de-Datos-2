@@ -28,5 +28,6 @@ void inserta_lista(TNodoV **cab, TNodoV *nuevo);
 void inserta_vertice(TNodoV **g, int v);
 void inserta_arista(TNodoA **cab, TNodoV *d);
 void imprime_grafoLL(TNodoV *g);
+void busqueda_amplitud_LL(TNodoV *g, int vo);
 
 #endif

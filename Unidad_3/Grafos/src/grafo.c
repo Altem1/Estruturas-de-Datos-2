@@ -292,7 +292,7 @@ void busqueda_prof(TGrafoMR g, int vo){
 
 }
 
-bprof(TGrafoMR g, int v, int *vis){
+void bprof(TGrafoMR g, int v, int *vis){
     int w;
     *(vis+v) = 1;
     printf("%d -> ", *(g.vertices+v));
@@ -304,3 +304,31 @@ bprof(TGrafoMR g, int v, int *vis){
 }
 
 //para el jueves traer en la libreta el algoritmo para la presentacion vector relacion
+
+void amplitud_dep(TGrafoMR g, int v){
+
+    int *visit;
+    TCola c;
+    int pos_v;
+
+    if(pos_v = busca_vertice(g, v) > -1){
+        inicializa_cola(&c, g.nv);
+        visit = (int*)calloc(sizeof(int)*g.nv, sizeof(int));
+        *(visit + pos_v) = 1;
+        printf("%d ->", (g.vertices + pos_v ));
+        enqueue(&c, v);
+        while(!cola_vacia(c)){
+            dequeue(&c, &v);
+            for(int w=0; w < g.nv; w++){
+
+                if(*(g.mR + v) + w == 1 && *(visit + w ) == 0){
+                    *(visit + w) = 1;
+                    printf("%d -> ", *(g.vertices + w) );
+                    enqueue(&c, w);
+                }
+            }
+        }
+    }
+}
+
+//hacer para vector relacion y listas de listas

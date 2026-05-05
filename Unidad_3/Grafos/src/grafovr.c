@@ -137,6 +137,50 @@ void bprof_VR(TGrafo *g, int v, int *vis) {
     }
 }
 
+void busqueda_amplitud_VR(TGrafo *g, Tipo vo){
+    if(!g || g->num_vertices <= 0 || !g->conexiones){
+        return;
+    }
+
+    int inicio = buscar_indice(g, vo);
+    if(inicio == -1){
+        return;
+    }
+
+    int *visitados = (int*)calloc(g->num_vertices, sizeof(int));
+    int *cola = (int*)malloc(sizeof(int) * g->num_vertices);
+
+    if(!visitados || !cola){
+        free(visitados);
+        free(cola);
+        return;
+    }
+
+    int frente = 0;
+    int fin = 0;
+
+    *(visitados + inicio) = 1;
+    *(cola + fin++) = inicio;
+
+    while(frente < fin){
+        int actual = *(cola + frente++);
+        printf("%d -> ", (g->conexiones + actual)->dato);
+
+        TLista *aux = (g->conexiones + actual)->conexion;
+        while(aux != NULL){
+            int indice_vecino = buscar_indice(g, aux->destino);
+            if(indice_vecino != -1 && *(visitados + indice_vecino) == 0){
+                *(visitados + indice_vecino) = 1;
+                *(cola + fin++) = indice_vecino;
+            }
+            aux = aux->siguiente;
+        }
+    }
+
+    free(visitados);
+    free(cola);
+}
+
 void imprime_grafo(TGrafo *g){
 
 }

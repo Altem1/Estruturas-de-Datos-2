@@ -35,6 +35,7 @@ TLista *crea_nodoA(Tipo destino);
 
 void busqueda_prof_VR(TGrafo *g, Tipo vo);
 void bprof_VR(TGrafo *g, int v, int *vis);
+void busqueda_amplitud_VR(TGrafo *g, Tipo vo);
 
 void imprime_grafo(TGrafo *g);
 void destruye_grafo(TGrafo *g);
