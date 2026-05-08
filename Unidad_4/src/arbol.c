@@ -72,3 +72,51 @@ int altura(TNodoB *r){
 		return 0;
 	}
 }
+
+void elimina_nodo(TNodoB **r, tipo clave){
+	TNodoB *aux;
+	if(	*r != NULL){
+		if( clave < (*r) -> info){
+			elimina_nodo(&(*r) -> izq, clave);
+		}else{
+			if(clave > (*r) -> info){
+				elimina_nodo(&(*r) -> der, clave);
+			}else{
+				//se encontro
+				aux = *r;
+				if(!(*r) -> izq && !(*r) -> der){
+					*r = NULL;
+					free(aux);
+				}else{
+					if(!(*r) -> izq){
+						*r = aux -> der;
+						free(aux);
+					}else{
+						if(!(*r) -> der){
+							*r = aux -> izq;
+						}else{
+							TNodoB *dato = izq_mas_der(&(*r)->izq);
+							(*r) -> info = dato -> info;
+							free(dato);
+						}
+					}
+				}
+			}
+		}
+	}	
+}
+
+TNodoB *izq_mas_der(TNodoB **r){
+	TNodoB *ant = NULL;
+	TNodoB *act = *r;
+	while( act -> der != NULL ){
+		ant = act;
+		act = act -> der;
+	}
+	if(ant != NULL){
+		ant -> der = act -> izq;
+	}else{
+		*r = act -> izq;
+	}
+	return act;
+}
